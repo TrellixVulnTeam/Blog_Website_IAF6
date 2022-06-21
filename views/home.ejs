@@ -5,6 +5,10 @@
 <p><%= startingContent %></p>
 
 <% console.log(posts); %>
-<% posts %>
+
+
+<% posts.forEach(function(post) {%>
+ <%   console.log(post.title); %>
+ <% }); %>
 
 <%- include("partials/footer") -%>
