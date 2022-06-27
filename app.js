@@ -21,6 +21,7 @@ app.use(express.static("public"));
 app.get("/", function (req, res) {
   res.render("home", { startingContent: homeStartingContent, posts: posts });
   // console.log(posts); // moved into res.render above
+
 });
 
 app.get("/about", function (req, res) {
@@ -44,11 +45,22 @@ app.post("/compose", function (req, res) {
   // console.log(post);
   posts.push(post); // push to empty array at top of page
   res.redirect("/"); // redirects to line 25 = app.get("/", where we now console.log
+
 });
 
 app.get("/posts/:postName", function (req, res) {
-  console.log(req.params.postName);
-})
+  // console.log(req.params.postName);
+  const requestedTitle = req.params.postName;
+
+  posts.forEach(function (post) {
+    const storedTitle = post.title;
+
+    if (storedTitle === requestedTitle) {
+      console.log("match found");
+    }
+  });
+
+});
 
 
 app.listen(3000, function () {
